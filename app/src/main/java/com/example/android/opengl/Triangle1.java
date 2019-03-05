@@ -69,9 +69,10 @@ public class Triangle1 {
      * Sets up the drawing object data for use in an OpenGL ES context.
      */
     public Triangle1() {
+        float ShiftY = 0.7f;
         double DEG = Math.PI/180;
-        double mRaduis = 0.7f;
-        double mStep = 10;
+        double mRaduis = 0.35f;
+        double mStep = 15;
         double dTheta = mStep * DEG;
         double dPhi = dTheta;
         int points = 0;
@@ -85,16 +86,16 @@ public class Triangle1 {
             for (double theta = 0.0; theta <= (Math.PI * 2); theta += dTheta) {
 
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.cos(theta)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi)));//3
+                sphereVertex.put((float) (mRaduis * Math.cos(phi))+ShiftY);//3
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.sin(theta)));//2
                 points++;
-                sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.cos(theta + 0.01)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi)));//3
-                sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.sin(theta + 0.01)));//2
+                sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.cos(theta + 0.02)));//1
+                sphereVertex.put((float) (mRaduis * Math.cos(phi))+ShiftY);//3
+                sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.sin(theta + 0.02)));//2
                 points++;
 
                 sphereVertex.put((float) (mRaduis * Math.sin(phi + 0.4) * Math.cos(theta)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi + 0.4)));//3
+                sphereVertex.put((float) (mRaduis * Math.cos(phi + 0.4))+ShiftY);//3
                 sphereVertex.put((float) (mRaduis * Math.sin(phi + 0.4) * Math.sin(theta)));//2
 
                 points++;
@@ -107,15 +108,15 @@ public class Triangle1 {
             //for each stage calculating the slices
             for (double theta = 0.0; theta <= (Math.PI * 2); theta += dTheta) {
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.cos(theta)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi)));//3
+                sphereVertex.put((float) (mRaduis * Math.cos(phi))+ShiftY);//3
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.sin(theta)));//2
                 points++;
-                sphereVertex.put((float) (mRaduis * Math.sin(phi+0.01) * Math.cos(theta)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi+0.01)));//3
-                sphereVertex.put((float) (mRaduis * Math.sin(phi+0.01) * Math.sin(theta)));//2
+                sphereVertex.put((float) (mRaduis * Math.sin(phi+0.02) * Math.cos(theta)));//1
+                sphereVertex.put((float) (mRaduis * Math.cos(phi+0.02))+ShiftY);//3
+                sphereVertex.put((float) (mRaduis * Math.sin(phi+0.02) * Math.sin(theta)));//2
                 points++;
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.cos(theta+0.4)));//1
-                sphereVertex.put((float) (mRaduis * Math.cos(phi)));//3
+                sphereVertex.put((float) (mRaduis * Math.cos(phi))+ShiftY);//3
                 sphereVertex.put((float) (mRaduis * Math.sin(phi) * Math.sin(theta+0.4)));//2
 
                 points++;
