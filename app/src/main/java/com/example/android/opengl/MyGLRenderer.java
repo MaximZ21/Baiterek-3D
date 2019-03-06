@@ -37,7 +37,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private static final String TAG = "MyGLRenderer";
     private Triangle1 mTriangle;
-    private Square   mSquare;
+    private ThickCircle mThickCircle;
+    private Leg mLeg;
 
     // mMVPMatrix is an abbreviation for "Model View Projection Matrix"
     private final float[] mMVPMatrix = new float[16];
@@ -57,7 +58,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
         mTriangle = new Triangle1();
-        mSquare   = new Square();
+        mThickCircle   = new ThickCircle();
+        mLeg = new Leg();
     }
 
     @Override
@@ -85,6 +87,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 // Draw triangle
 
         mTriangle . draw ( scratch );
+        mThickCircle.draw(scratch);
+        mLeg.draw(scratch);
+
 
     }
 
