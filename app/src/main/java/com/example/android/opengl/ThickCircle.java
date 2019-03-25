@@ -69,16 +69,18 @@ public class ThickCircle {
      * Sets up the drawing object data for use in an OpenGL ES context.
      */
     public ThickCircle() {
-        float widthY = 0.03f;
+        float mRaduis1 = 0.1f;
+        float column_height = 0.65f;
+        float widthY = 0.015f;
         float ShiftY = 0.3f;
         double DEG = Math.PI/180;
-        double mRaduis = 0.35f;
+        double mRaduis = 0.25f;
         double mStep = 15;
         double dTheta = mStep * DEG;
         double dPhi = dTheta;
         int points = 0;
         FloatBuffer circleVertex;
-        circleVertex = FloatBuffer.allocate(40000);
+        circleVertex = FloatBuffer.allocate(400000);
         double phi;
         phi = -(Math.PI);
         for (double theta = 0.0; theta <= (Math.PI * 2); theta += dTheta) {
@@ -108,6 +110,67 @@ public class ThickCircle {
             circleVertex.put((float) (mRaduis * Math.sin(theta+dTheta)));//2
             points++;
         }
+
+        for (double theta = 0.0; theta <= (Math.PI * 2); theta += (Math.PI * 2)/10) {
+
+            circleVertex.put((float) (mRaduis * Math.cos(theta)));//1
+            circleVertex.put(ShiftY);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+
+
+            circleVertex.put((float) (mRaduis * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+        }
+
+        for (double theta = 0.0; theta <= (Math.PI * 2); theta += (Math.PI * 2)/10) {
+
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis * Math.cos(theta)));//1
+            circleVertex.put(ShiftY-column_height-column_height);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+
+
+            circleVertex.put((float) (mRaduis1 * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY-column_height);//3
+            circleVertex.put((float) (mRaduis1 * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+            circleVertex.put((float) (mRaduis * Math.cos(theta)));//1
+            circleVertex.put(ShiftY-column_height-column_height);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta)));//2
+            points++;
+            circleVertex.put((float) (mRaduis * Math.cos(theta+(Math.PI * 2)/100)));//1
+            circleVertex.put(ShiftY-column_height-column_height);//3
+            circleVertex.put((float) (mRaduis * Math.sin(theta+(Math.PI * 2)/100)));//2
+            points++;
+        }
+
 
 
 
