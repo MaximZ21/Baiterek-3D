@@ -4,21 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
     android:orientation="vertical"
-    tools:context=".InfoActivity" >
+    tools:context=".InfoActivity">
 
-    <android.support.v4.view.ViewPager
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:layout_weight="0.07"
+        tools:srcCompat="@tools:sample/avatars[0]" />
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-    </android.support.v4.view.ViewPager>
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Odio morbi quis commodo odio aenean. In massa tempor nec feugiat. Libero enim sed faucibus turpis in eu mi. Id cursus metus aliquam eleifend mi in nulla posuere. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Nunc consequat interdum varius sit amet mattis vulputate enim. Lacinia quis vel eros donec ac odio tempor orci. Ullamcorper sit amet risus nullam eget felis. Libero volutpat sed cras ornare arcu dui vivamus arcu. Lacus laoreet non curabitur gravida arcu ac tortor dignissim convallis. Amet nisl purus in mollis nunc sed id. Mauris a diam maecenas sed enim ut sem. Vulputate dignissim suspendisse in est ante. Amet massa vitae tortor condimentum lacinia quis vel eros. Eleifend quam adipiscing vitae proin sagittis nisl. Augue interdum velit euismod in pellentesque. In aliquam sem fringilla ut morbi. Aliquam vestibulum morbi blandit cursus risus at. Suspendisse ultrices gravida dictum fusce ut.  Mi proin sed libero enim sed faucibus. Viverra orci sagittis eu volutpat odio facilisis mauris. Urna nec tincidunt praesent semper feugiat. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Enim nunc faucibus a pellentesque sit. Facilisis volutpat est velit egestas dui id ornare arcu. Cras ornare arcu dui vivamus arcu felis. Mattis pellentesque id nibh tortor id aliquet lectus proin nibh. Tempus iaculis urna id volutpat lacus laoreet. Eu non diam phasellus vestibulum lorem sed risus ultricies. Consectetur libero id faucibus nisl tincidunt eget. Enim sit amet venenatis urna cursus.  In fermentum posuere urna nec tincidunt praesent. Urna porttitor rhoncus dolor purus. Consequat semper viverra nam libero justo laoreet. Ultricies leo integer malesuada nunc vel risus. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Morbi non arcu risus quis varius quam quisque id diam. Tortor condimentum lacinia quis vel eros donec ac odio. Quam vulputate dignissim suspendisse in est ante in nibh. Orci a scelerisque purus semper eget duis at tellus at. Quis hendrerit dolor magna eget est lorem ipsum dolor." />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:onClick="BackButtonClick"
+            android:text="Prev" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:onClick="nextButtonClick"
+            android:text="Next" />
+    </LinearLayout>
+
 </LinearLayout>

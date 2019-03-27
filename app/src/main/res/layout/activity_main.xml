@@ -25,6 +25,7 @@
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
+        android:onClick="onClick1"
         app:srcCompat="@android:color/holo_blue_bright" />
 
     <ImageView

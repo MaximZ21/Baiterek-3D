@@ -5,18 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity {
 
-    private StorageReference mStorageRef;
+    Storage storage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        FirebaseApp.initializeApp(this);
+        storage = Storage.getInstance();
+        storage.getData(this);
+
     }
 
     public void onClick3(View v) {
@@ -27,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClick1(View v) {
         Intent i = new Intent(this, InfoActivity.class);
         startActivity(i);
+        storage.Print();
     }
 }

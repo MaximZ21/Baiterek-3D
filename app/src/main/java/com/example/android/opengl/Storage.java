@@ -2,7 +2,6 @@ package com.example.android.opengl;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -11,18 +10,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.LinkedList;
 
-public class StorageClass implements Serializable {
-
+class Storage {
+    private static final Storage ourInstance = new Storage();
     public LinkedList<String> info_texts;
 
     FirebaseDatabase database;
     DatabaseReference myRef;
 
-    public StorageClass(Context context){
+    static Storage getInstance() {
+        return ourInstance;
+    }
+
+    private Storage() {
         info_texts = new LinkedList<>();
+    }
+
+    public void getData(Context context){
         FirebaseApp.initializeApp(context);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("info");
@@ -49,5 +54,4 @@ public class StorageClass implements Serializable {
             System.out.println(i);
         }
     }
-
 }
