@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
         storage = Storage.getInstance();
-        storage.getData(this);
+        storage.getInfoTexts(this);
+        storage.getInfoImages(this);
 
     }
 

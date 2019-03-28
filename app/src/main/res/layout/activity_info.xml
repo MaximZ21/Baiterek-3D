@@ -9,10 +9,13 @@
     tools:context=".InfoActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/infoImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.07"
+        android:layout_weight="0.01"
+        android:adjustViewBounds="false"
+        android:cropToPadding="true"
+        android:scaleType="centerInside"
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <ScrollView

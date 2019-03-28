@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -23,6 +24,7 @@ public class InfoActivity extends AppCompatActivity {
     Button backButton;
     Button nextButton;
     int page;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class InfoActivity extends AppCompatActivity {
         backButton = (Button)findViewById(R.id.button1);
         nextButton = (Button)findViewById(R.id.button2);
         backButton.setVisibility(View.INVISIBLE);
+        imageView = (ImageView)findViewById(R.id.infoImageView);
+        imageView.setImageBitmap(storage.info_images.get(0));
     }
 
     public void BackButtonClick(View v){
