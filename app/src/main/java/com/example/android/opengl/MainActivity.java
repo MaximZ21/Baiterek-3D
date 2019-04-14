@@ -19,8 +19,12 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         storage = Storage.getInstance();
         storage.getInfoTexts(this);
-        storage.getInfoImages(this);
+        storage.getQuestions(this);
+    }
 
+    public void onClick2(View v){
+        Intent i = new Intent(this,QuestionActivity.class);
+        startActivity(i);
     }
 
     public void onClick3(View v) {
@@ -31,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     public void onClick1(View v) {
         Intent i = new Intent(this, InfoActivity.class);
         startActivity(i);
-        storage.Print();
+    }
+
+    public void onClick4(View v) {
+        Intent i = new Intent(this, WeatherActivity.class);
+        startActivity(i);
     }
 }

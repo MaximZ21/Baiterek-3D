@@ -55,6 +55,7 @@ public class InfoActivity extends AppCompatActivity {
             backButton.setVisibility(View.VISIBLE);
         }
         textView.setText(storage.info_texts.get(page));
+        imageView.setImageBitmap(storage.info_images.get(page));
     }
 
     public void nextButtonClick(View v){
@@ -72,6 +73,7 @@ public class InfoActivity extends AppCompatActivity {
             backButton.setVisibility(View.VISIBLE);
         }
         textView.setText(storage.info_texts.get(page));
+        imageView.setImageBitmap(storage.info_images.get(page));
     }
 
 
