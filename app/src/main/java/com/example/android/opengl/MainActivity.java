@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
-        storage = Storage.getInstance();
-        storage.getInfoTexts(this);
-        storage.getQuestions(this);
+//        storage = Storage.getInstance();
+//        storage.getInfoTexts(this);
+//        storage.getQuestions(this);
     }
 
     public void onClick2(View v){
@@ -40,5 +40,10 @@ public class MainActivity extends AppCompatActivity {
     public void onClick4(View v) {
         Intent i = new Intent(this, WeatherActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //ahaha do nothing
     }
 }

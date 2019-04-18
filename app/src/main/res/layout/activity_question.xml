@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/questionImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
         tools:srcCompat="@tools:sample/avatars[13]" />
 
     <TextView
@@ -34,16 +34,20 @@
 
             <Button
                 android:id="@+id/bv1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="nextQuestion"
+                android:tag="1"
                 android:text="Button" />
 
             <Button
                 android:id="@+id/bv2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="nextQuestion"
+                android:tag="2"
                 android:text="Button" />
         </LinearLayout>
 
@@ -54,16 +58,20 @@
 
             <Button
                 android:id="@+id/bv3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="nextQuestion"
+                android:tag="3"
                 android:text="Button" />
 
             <Button
                 android:id="@+id/bv4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="nextQuestion"
+                android:tag="4"
                 android:text="Button" />
         </LinearLayout>
     </LinearLayout>

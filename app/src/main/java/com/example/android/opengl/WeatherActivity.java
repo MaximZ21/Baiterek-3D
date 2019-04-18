@@ -86,42 +86,53 @@ public class WeatherActivity extends AppCompatActivity implements ActivityCompat
             ActivityCompat.requestPermissions( this, new String[] {  Manifest.permission.ACCESS_COARSE_LOCATION  },
                     2);
         }
+        onRequestPermissionsResult(2,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},new int[]{PackageManager.PERMISSION_GRANTED});
 
 
 
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        Location loc = null;
+        Location loc2 = null;
         if ( ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             LocationListener locationListener = new MyLocationListener();
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
-            Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.d("location", "Last: " + String.valueOf(loc.getLatitude()) + ":" + loc.getLongitude());
-            Location bai = new Location("");
-            bai.setLatitude(51.128287);
-            bai.setLongitude(71.430495);
-            location.setText(String.valueOf(loc.distanceTo(bai))+"m");
-            if(loc.distanceTo(bai) < 50){
-                location.setTextColor(Color.RED);
-            }else{
-                location.setTextColor(Color.BLUE);
+            loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(loc != null) {
+                Log.d("location", "Last: " + String.valueOf(loc.getLatitude()) + ":" + loc.getLongitude());
             }
         }
         if ( ContextCompat.checkSelfPermission( this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             LocationListener locationListener = new MyLocationListener();
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1, locationListener);
-            Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Log.d("location", "LastN: " + String.valueOf(loc.getLatitude()) + ":" + loc.getLongitude());
+            loc2 = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if(loc2 != null) {
+                Log.d("location", "LastN: " + String.valueOf(loc2.getLatitude()) + ":" + loc2.getLongitude());
+            }
             Location bai = new Location("");
             bai.setLatitude(51.128287);
             bai.setLongitude(71.430495);
-            location.setText(String.valueOf(loc.distanceTo(bai))+"m");
-            if(loc.distanceTo(bai) < 50){
-                location.setTextColor(Color.RED);
+            if(loc != null) {
+                Log.d("location","gps not null");
+                location.setText(String.valueOf(loc.distanceTo(bai)) + "m");
+                if (loc.distanceTo(bai) < 50) {
+                    location.setTextColor(Color.RED);
+                } else {
+                    location.setTextColor(Color.BLUE);
+                }
+            }else if(loc2 != null){
+                Log.d("location","network not null");
+                location.setText(String.valueOf(loc2.distanceTo(bai))+"m");
+                if(loc2.distanceTo(bai) < 50){
+                    location.setTextColor(Color.RED);
+                }else{
+                    location.setTextColor(Color.BLUE);
+                }
             }else{
-                location.setTextColor(Color.BLUE);
+                location.setText("Sorry, no data for now :(");
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.android.opengl;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -20,17 +21,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.LinkedList;
-
+import java.util.List;
 
 
 class Storage {
-    private static final Storage ourInstance = new Storage();
-    public LinkedList<String> info_texts;
-    public LinkedList<Question> questions;
-    public LinkedList<Bitmap> info_images;
-    public LinkedList<Bitmap> question_images;
+    private static Storage ourInstance;
+    public List<String> info_texts;
+    public List<Question> questions;
+    public List<Bitmap> info_images;
+    public List<Bitmap> question_images;
 
+
+    public boolean use_SQLite_data = false;
     FirebaseDatabase database;
     DatabaseReference myRef;
     private StorageReference mStorageRef;
@@ -38,12 +42,21 @@ class Storage {
     int images_downloaded;
     Bitmap qarr[];
     int question_images_downloaded;
+    DatabaseHelper dh;
 
-    static Storage getInstance() {
+    public boolean download_images_complete = false;
+    public boolean download_questioins_complete = false;
+
+    static Storage getInstance(Context context) {
+        if(ourInstance == null){
+            ourInstance = new Storage(context);
+        }
         return ourInstance;
     }
 
-    private Storage() {
+    private Storage(Context context) {
+        dh = new DatabaseHelper(context);
+        System.out.println("db created");
         info_texts = new LinkedList<>();
         info_images = new LinkedList<>();
         questions = new LinkedList<>();
@@ -94,6 +107,10 @@ class Storage {
                         for(Bitmap b : barr){
                             info_images.add(b);
                         }
+                        dh.setInfo(info_texts,info_images);
+                        System.out.println("+++");
+                        System.out.println(Arrays.toString(dh.getInfoTexts().toArray()));
+                        download_images_complete = true;
                     }
                     else{
                         handler.postDelayed(this,300);
@@ -148,7 +165,7 @@ class Storage {
 
 
 
-    public void getQuestions(Context context){
+    public void getQuestions(final Context context){
         FirebaseApp.initializeApp(context);
         mStorageRef = FirebaseStorage.getInstance().getReference();
         database = FirebaseDatabase.getInstance();
@@ -167,6 +184,7 @@ class Storage {
                     Question q = new Question(text,v1,v2,v3,v4,correct);
                     questions.add(q);
                 }
+                getQuestionImages(context);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -183,8 +201,8 @@ class Storage {
         try {
             FirebaseApp.initializeApp(context);
             final File localFile = File.createTempFile("questionImages", "jpg");
-            barr = new Bitmap[info_texts.size()];
-            for(int i = 0; i < info_texts.size() ; i++) {
+            qarr = new Bitmap[questions.size()];
+            for(int i = 0; i < questions.size() ; i++) {
                 getQuestionImagesHelper g = new getQuestionImagesHelper(i);
                 g.start();
             }
@@ -192,9 +210,11 @@ class Storage {
             handler.postDelayed(new Runnable(){
                 public void run(){
                     if(question_images_downloaded == questions.size()){
-                        for(Bitmap b : barr){
+                        for(Bitmap b : qarr){
                             question_images.add(b);
                         }
+                        dh.setQuestion(questions,question_images);
+                        download_questioins_complete = true;
                     }
                     else{
                         handler.postDelayed(this,300);

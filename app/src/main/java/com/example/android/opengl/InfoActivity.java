@@ -20,7 +20,7 @@ public class InfoActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     TextView textView;
-    Storage storage = Storage.getInstance();
+    Storage storage = Storage.getInstance(this);
     Button backButton;
     Button nextButton;
     int page;
